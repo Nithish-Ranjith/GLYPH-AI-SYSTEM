@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GLYPH | Tirupati Digital Twin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        /* Background color is now handled by React App.tsx via Classes */
+        /* background-color: #020617; */ 
+      }
+      h1, h2, h3, h4, .font-tech {
+        font-family: 'Rajdhani', sans-serif;
+      }
+      /* Custom Scrollbar for Dark Mode */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #475569; 
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #64748b; 
+      }
+      /* Leaflet Container Fixes */
+      .leaflet-container {
+        width: 100%;
+        height: 100%;
+        background: #020617;
+      }
+      /* Leaflet Tooltip Dark Mode */
+      .leaflet-tooltip {
+        background-color: rgba(15, 23, 42, 0.9) !important;
+        border: 1px solid #334155 !important;
+        color: #f8fafc !important;
+        border-radius: 4px !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5) !important;
+      }
+      .leaflet-tooltip-top:before {
+        border-top-color: rgba(15, 23, 42, 0.9) !important;
+      }
+
+      /* Basemap Visuals */
+      .basemap-layer {
+        filter: contrast(1.2) brightness(0.75) !important;
+      }
+      
+      /* Pixel Visuals */
+      .raster-pixel {
+        filter: brightness(0.85) contrast(1.1);
+      }
+
+      /* WHATSAPP STYLE TREND BUBBLE */
+      .trend-bubble-icon {
+        background: transparent !important;
+        border: none !important;
+        /* Ensure no pointer events block the map below, but enable for bubble */
+        pointer-events: none;
+      }
+      .trend-bubble {
+        pointer-events: auto;
+        background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+        color: white;
+        padding: 8px 14px;
+        border-radius: 18px;
+        border-bottom-left-radius: 2px; /* Chat Bubble Tail */
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        
+        /* Centering Logic */
+        position: absolute;
+        bottom: 0px; 
+        left: 0;
+        transform: translate(-50%, -100%);
+        
+        /* Dynamic Sizing */
+        width: max-content;
+        max-width: 250px;
+        white-space: normal;
+        
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        animation: float 3s ease-in-out infinite;
+      }
+      @keyframes float {
+        0% { transform: translate(-50%, -100%) translateY(0px); }
+        50% { transform: translate(-50%, -100%) translateY(-5px); }
+        100% { transform: translate(-50%, -100%) translateY(0px); }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
+    "recharts": "https://esm.sh/recharts@^3.7.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "leaflet": "https://esm.sh/leaflet@1.9.4",
+    "react-leaflet": "https://esm.sh/react-leaflet@5.0.0-rc.2?deps=leaflet@1.9.4,react@19.2.4,react-dom@19.2.4",
+    "jspdf": "https://esm.sh/jspdf@2.5.1",
+    "jspdf-autotable": "https://esm.sh/jspdf-autotable@3.8.1",
+    "firebase/app": "https://esm.sh/firebase@10.8.0/app",
+    "firebase/firestore": "https://esm.sh/firebase@10.8.0/firestore",
+    "firebase/": "https://esm.sh/firebase@^12.8.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
